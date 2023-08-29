@@ -1,0 +1,13 @@
+service: sls-applications-handle
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  rateHandler:
+    handler: ./index.handler
+    events:
+      # Invoke Lambda function every 5 minute
+      - schedule: rate(5 minutes)
