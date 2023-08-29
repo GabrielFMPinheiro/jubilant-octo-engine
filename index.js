@@ -12,7 +12,7 @@ module.exports.handler = async (event, context) => {
   console.log(`Your cron function "${context.functionName}" ran at ${time}`);
   // record a generic message and send it to Rollbar
   rollbar.critical("Crash while processing payment2");
-  rollbar.warning("Facebook API unavailable2");
+  rollbar.warning("Facebook API unavailable3");
   rollbar.info("User logged in2");
   rollbar.debug("Cron job starting2");
 
