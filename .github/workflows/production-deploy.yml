@@ -27,14 +27,7 @@ jobs:
 
       - name: Set environment variables
         run: |
-          if [ "${{ inputs.environment }}" == "stage" ]; then
-            echo "${{ secrets.ENV_STAGE }}" >> .env
-          elif [ "${{ inputs.environment }}" == "prod" ]; then
-            echo "${{ secrets.ENV_PROD }}" >> .env
-          else
-            echo "Unknown environment"
-            exit 1
-          fi
+          echo "${{ secrets.ENV_PROD }}" >> .env
 
       - name: Configure serverless authentication
         run: sls config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY }} --secret ${{ secrets.AWS_SECRET_KEY }}
