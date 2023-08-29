@@ -26,7 +26,10 @@ jobs:
         run: npm i -g serverless@3.34.0 --silent
 
       - name: Set environment variables
-        run: echo "${{ secrets.ENV_PROD }}" >> .env
+        run: | # cp sample.env.yml env.yml
+          cat > env.yml << EOF
+          ${{ secrets.ENV }}
+          EOF
 
       - name: Configure serverless authentication
         run: sls config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY }} --secret ${{ secrets.AWS_SECRET_KEY }}
