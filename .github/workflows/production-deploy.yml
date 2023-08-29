@@ -28,7 +28,7 @@ jobs:
       - name: Set environment variables
         run: | # cp sample.env.yml env.yml
           cat > env.yml << EOF
-          ${{ secrets.ENV }}
+          ${{ secrets.ENV_PROD }}
           EOF
 
       - name: Configure serverless authentication
