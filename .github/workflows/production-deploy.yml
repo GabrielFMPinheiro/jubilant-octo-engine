@@ -36,4 +36,4 @@ jobs:
         run: npm ci --silent
 
       - name: Deploy lambda function
-        run: sls deploy --stage prod --verbose
+        run: sls deploy --stage prod
