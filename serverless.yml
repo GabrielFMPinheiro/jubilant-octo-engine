@@ -11,3 +11,6 @@ functions:
     events:
       # Invoke Lambda function every 5 minute
       - schedule: rate(5 minutes)
+
+plugins:
+  - serverless-dotenv-plugin

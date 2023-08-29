@@ -27,7 +27,7 @@ jobs:
 
       - name: Set environment variables
         run: | # cp sample.env.yml env.yml
-          cat > env.yml << EOF
+          cat > .env << EOF
           ${{ secrets.ENV_PROD }}
           EOF
 
