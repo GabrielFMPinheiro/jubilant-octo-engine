@@ -1,0 +1,41 @@
+name: Common Deploy
+
+on:
+  pull_request:
+    branches:
+      - "main"
+  push:
+    branches:
+      - "release/*"
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to repo
+        uses: actions/checkout@v3
+
+      - name: Setup node environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.17.1"
+
+      - name: Install serverless globally
+        run: npm i -g serverless@3.34.0 --silent
+
+      - name: Set environment variables
+        run: | # cp sample.env.yml env.yml
+          cat > .env << EOF
+          ${{ secrets.ENV_PROD }}
+          EOF
+
+      - name: Configure serverless authentication
+        run: sls config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY }} --secret ${{ secrets.AWS_SECRET_KEY }}
+
+      - name: Install npm dependencies
+        run: npm ci --silent
+
+      - name: Deploy lambda function
+        run: sls deploy --stage prod

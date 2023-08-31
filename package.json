@@ -6,5 +6,11 @@
   "license": "MIT",
   "dependencies": {
     "rollbar": "^2.26.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.7",
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-plugin-typescript": "^2.1.5",
+    "typescript": "^5.2.2"
   }
 }
