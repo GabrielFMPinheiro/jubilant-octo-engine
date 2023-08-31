@@ -1,4 +1,4 @@
-var Rollbar = require("rollbar");
+import Rollbar from "rollbar";
 
 var rollbar = new Rollbar({
   accessToken: "1d73fab489ac4daaa97ae44d8c22679b",
@@ -7,7 +7,7 @@ var rollbar = new Rollbar({
   environment: "production",
 });
 
-module.exports.handler = rollbar.lambdaHandler(async (event, context) => {
+const handler = rollbar.lambdaHandler(async (event, context) => {
   const time = new Date();
   console.log(`Your cron function "${context.functionName}" ran at ${time}`);
   // record a generic message and send it to Rollbar
@@ -19,3 +19,5 @@ module.exports.handler = rollbar.lambdaHandler(async (event, context) => {
   // can pass arbitrary params
   rollbar.info("User logged in", { loginType: "email+password" });
 });
+
+export { handler };

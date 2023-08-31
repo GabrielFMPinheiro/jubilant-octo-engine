@@ -13,4 +13,5 @@ functions:
       - schedule: rate(5 minutes)
 
 plugins:
+  - serverless-plugin-typescript
   - serverless-dotenv-plugin
